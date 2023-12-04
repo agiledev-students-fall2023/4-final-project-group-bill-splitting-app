@@ -11,5 +11,10 @@
   "devDependencies": {
     "chai": "^4.3.10",
     "mocha": "^10.2.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "cd back-end && npm test"
   }
+  
 }
