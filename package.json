@@ -13,8 +13,12 @@
     "mocha": "^10.2.0"
   },
   "scripts": {
+    "start-back-end": "cd back-end && npm start", 
+    "start-front-end": "cd front-end && npm start", 
+    "test-back-end": "cd back-end && npm test",
+    "test-front-end": "cd front-end && npm test",
     "build": "webpack --config webpack.config.js",
-    "test": "cd back-end && npm test"
+    "test": "npm run test-back-end && npm run test-front-end"
   }
   
 }

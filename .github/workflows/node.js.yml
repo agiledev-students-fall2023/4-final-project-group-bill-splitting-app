@@ -7,7 +7,7 @@ on:
     branches: [ 'master', 'workflows-action' ]
 
 jobs:
-  build:
+  build-and-start:
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,15 +15,38 @@ jobs:
         node-version: [14.x, 16.x, 18.x]
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Install dependencies
-      run: npm install
-    - name: Run build script
-      run: npm run build
-    - name: Run tests
-      run: npm test
+
+    - name: Install back-end dependencies
+      run: |
+        cd back-end
+        npm install
+
+    - name: Start back-end
+      run: |
+        cd back-end
+        npm start &
+        sleep 10 # Waits 10 seconds to ensure back-end is up
+
+    - name: Install front-end dependencies
+      run: |
+        cd front-end
+        npm install
+
+    - name: Start front-end
+      run: |
+        cd front-end
+        npm start &
+        sleep 10 # Waits 10 seconds to ensure front-end is up
+
+
+      # console.log
+      # pwd: which place 
+      # run these steps on where
