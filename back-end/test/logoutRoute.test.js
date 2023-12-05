@@ -14,6 +14,7 @@ describe(" GET Endpoint for logout", () => {
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(res.body).to.be.a("object");
+          expect(res.body).to.have.property("success", true);
           done();
         });
     });

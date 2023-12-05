@@ -99,8 +99,9 @@
 }
 
 .chatbox-input {
-  @apply px-4 py-2 bg-gray-200 rounded-md text-gray-800 border border-transparent focus:outline-none focus:border-gray-400;
+  @apply px-4 py-2 bg-gray-200 rounded-md text-gray-800 border border-transparent focus:outline-none focus:border-gray-400 mb-3; 
   width: calc(100% - 1em);
+  height: 100px;
 }
 
 .send-button {

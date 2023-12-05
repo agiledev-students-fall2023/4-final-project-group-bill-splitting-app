@@ -49,7 +49,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3001/", formData, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/`, formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -120,7 +120,7 @@ const Login = () => {
             </a>
             <span className="mx-2"> | </span>
             <a href="/forgot-password" className="login-link">
-              Forgot Password
+              Reset Password
             </a>
           </div>
         </div>

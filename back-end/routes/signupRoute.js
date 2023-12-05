@@ -20,7 +20,7 @@ router.post(
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
-    const avatar = `https://robohash.org/${username}.png?size=50x50&set=set1`; 
+    const avatar = `${process.env.AVATAR_GENERATOR}/${username}.png?size=50x50&set=set1`;
 
     if (!username || !password || !email) {
       res.status(401).json({

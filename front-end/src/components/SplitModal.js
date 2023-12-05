@@ -173,23 +173,24 @@ function SplitModal({
             )}
             {participants.map((participant) => (
               <div key={participant._id} className="amountPerPerson">
-                <span>{participant.username}</span>
+                <span className="participant-name">{participant.username}</span>
                 {activeTab === "equally" && (
-                  <span>
-                    {"$" + (totalAmount / participants.length).toFixed(2)}
+                <span className="participant-amount">
+                  {"$" + (totalAmount / participants.length).toFixed(2)}
                   </span>
-                )}
+                  )}
                 {activeTab === "percentage" && (
                   <div className="percentageContent">
                     <input
                       type="number"
+                      className="participant-percentage-input"
                       value={participantPercentages[participant._id] || ""}
                       onChange={(e) =>
                         handlePercentageChange(e, participant._id)
                       }
                     />
-                    % =
-                    <span>
+                    <span>% =</span>
+                    <span className="calculated-amount">
                       {" " +
                         "$" +
                         calculateAmount(
@@ -201,12 +202,16 @@ function SplitModal({
                   </div>
                 )}
                 {activeTab === "amount" && (
-                  <div>
-                    ${" "}
+                  <div className="amountContent">
+                  <div className="amountInputContainer">
+                    <span className="dollar-sign">$</span>
                     <input
                       type="number"
+                      className="participant-amount-input"
+                      value={participantAmounts[participant._id] || ""}
                       onChange={(e) => handleAmountChange(e, participant._id)}
                     />
+                  </div>
                   </div>
                 )}
               </div>

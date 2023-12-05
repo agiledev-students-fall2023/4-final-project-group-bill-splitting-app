@@ -6,12 +6,8 @@ header {
     @apply h-20 w-full text-center p-4 mt-3 mb-6 rounded-lg;
 }
 
-.operations {
+.summary {
     @apply flex space-x-4 place-content-center mb-6;
-}
-
-.operations button {
-    @apply w-24 h-8 rounded-full justify-items-center bg-cyan-50 hover:bg-orange-100 active:bg-orange-200;
 }
 
 .expenses {
@@ -30,8 +26,12 @@ header {
     @apply col-span-3 hover:text-orange-200;
 }
 
-.date, .name, .amount, .checkbox {
-    @apply inline-block m-auto;
+.date, .name, .amount {
+    @apply inline-block m-auto mr-4;
+}
+
+.settled{
+    @apply text-green-500
 }
 
 .name {

@@ -8,6 +8,7 @@ const settlementSchema = new Schema({
   settleTo: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   settleFrom: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   event: { type: mongoose.Schema.Types.ObjectId, ref: "Event" },
+  expense: { type: mongoose.Schema.Types.ObjectId, ref: "Expense" },
 });
 
 // create mongoose Model

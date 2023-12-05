@@ -25,38 +25,40 @@ router.post(
     console.log("validation passed");
 
     try {
-
-      let splitDetailsWithSettlements = [];
-      // Create Settlement objects
-      for (const split of req.body.peopleSplit) {
-        if (split.user !== req.body.paidBy) {
-          let newSettlement = new Settlement({
-            status: false,
-            amount: split.amount,
-            settleTo: req.body.paidBy,
-            settleFrom: split.user,
-            event: req.body.event,
-          });
-          console.log(newSettlement);
-          await newSettlement.save();
-          splitDetailsWithSettlements.push({ user: split.user, settlement: newSettlement._id });
-        }
-      }
-
-      // Create a new Expense object
       const newExpense = new Expense({
         name: req.body.name,
         description: req.body.description,
         totalAmount: req.body.totalAmount,
         date: new Date(req.body.date),
         paidBy: req.body.paidBy,
-        splitDetails: splitDetailsWithSettlements,
         event: req.body.event,
       });
 
-      console.log(newExpense);
+      const savedExpense = await newExpense.save();
 
-      // Save the Expense object to the database
+      let splitDetailsWithSettlements = [];
+      for (const split of req.body.peopleSplit) {
+        const settleTo = req.body.paidBy;
+        const settleFrom = split.user;
+        let newSettlement = new Settlement({
+          status: settleTo.toString() === settleFrom._id.toString(),
+          amount: split.amount,
+          settleTo: settleTo,
+          settleFrom: settleFrom,
+          event: req.body.event,
+          expense: savedExpense._id,
+        });
+
+        await newSettlement.save();
+        splitDetailsWithSettlements.push({
+          user: split.user,
+          settlement: newSettlement._id,
+        });
+      }
+
+      savedExpense.splitDetails = splitDetailsWithSettlements;
+      await savedExpense.save();
+
       const event = await Event.findById(req.body.event);
       if (!event) {
         return res
@@ -64,20 +66,15 @@ router.post(
           .json({ status: "Error", message: "Event not found" });
       }
 
-      // Add the expense ID to the event's expenses list
-      // ? no "savedExpense" defined, maybe "newExpense"?
-      const savedExpense = await newExpense.save();
       event.expenses.push(savedExpense._id);
       await event.save();
 
-      // Send a success response
       res.status(201).json({
         status: "Success",
         message: "Expense added successfully",
-        data: newExpense,
+        data: savedExpense,
       });
     } catch (error) {
-      // Handle any errors that occur during saving to database
       console.log(error);
       res.status(500).json({ status: "Error", message: error.message });
     }

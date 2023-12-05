@@ -23,15 +23,47 @@
 }
 
 .amountPerPerson {
-    @apply grid grid-cols-3 p-1 mb-4 rounded-lg;
+    @apply grid grid-cols-2 gap-4 p-1 mb-4 items-center;
+}
+
+.amountPerPerson span:first-child {
+    @apply text-left;
+}
+  
+.amountPerPerson span:last-child {
+    @apply text-right;
+}
+
+.amountPerPerson .participant-name {
+    @apply text-left;
+}
+
+.amountPerPerson .calculated-amount {
+    @apply text-right;
+}
+
+.amountPerPerson .dollar-sign {
+    @apply mr-2;
 }
 
 .amountPerPerson input {
-    @apply w-14 mr-1;
+    @apply w-full text-right;
 }
 
 .amountPerPerson .percentageContent {
-    @apply col-span-2;
+    @apply flex justify-end items-center w-full;
+}
+
+.amountPerPerson .amountInputContainer {
+    @apply flex items-center;
+}
+
+.amountPerPerson .percentageContent input {
+    @apply text-right mr-2;
+}
+
+.amountPerPerson .percentageContent span {
+    @apply whitespace-nowrap;
 }
 
 /* Dark Mode for Split Modal */

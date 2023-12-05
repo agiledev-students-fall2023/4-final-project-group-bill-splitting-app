@@ -92,9 +92,18 @@ router.get("/for/:userId", async (req, res) => {
       const userId = req.params.userId;
   
       // Fetch the user and populate the events
-      const userWithEvents = await User.findById(userId).populate({
+      const userWithEvents = await User.findById(userId)
+      .populate({
         path: "events",
         model: "Event",
+        populate:{
+          path: "expenses",
+          model: "Expense",
+          populate: {
+            path: "splitDetails.settlement",
+            model: "Settlement",
+          }
+        }
       });
   
       if (!userWithEvents) {

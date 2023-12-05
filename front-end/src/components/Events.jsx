@@ -4,15 +4,18 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import AddEvent from "./AddEvent";
-import EventsFilter from "../images/filter.png"; 
 import { jwtDecode } from "jwt-decode";
 
 function Events({ isDarkMode }) {
     const[eventData, setEventData] = useState([])
     const[addEvent, setaddEvent] = useState(false)
-    const[showFilter, setShowFilter] = useState(false);
-    const[selectedFilter, setSelectedFilter] = useState('all');
-    const[filteredEvents, setFilteredEvents] = useState([]);
+    const [settlements, setSettlements] = useState([]);
+    const [amountOwed, setAmountOwed] = useState(0);
+    const [amountOwedBy, setAmountOwedBy] = useState(0);
+    const [searchTerm, setSearchTerm] = useState("");
+    //const[showFilter, setShowFilter] = useState(false);
+    //const[selectedFilter, setSelectedFilter] = useState('all');
+    //const[filteredEvents, setFilteredEvents] = useState([]);
     
     function reformatDate(dateStr) {
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -39,20 +42,21 @@ function Events({ isDarkMode }) {
         };
     }, [isDarkMode]);
 
+    const token = localStorage.getItem("token");
+    const decode = jwtDecode(token);
+
     useEffect(()=>{
         //fetch mock data about a user's events list
         async function dataFetch(){ 
             try{
-                const token = localStorage.getItem("token");
-                const decode = jwtDecode(token);
-                if (!decode || !decode.id) {
+                if (!decode.id) {
                     console.error("No current user found in local storage.");
                     return;
                 } else {
                     console.log(decode.id);
                 }
                 //requesting data from the mock API endpoint
-                const response = await axios.get(`http://localhost:3001/events/for/${decode.id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND}/events/for/${decode.id}`);
                 console.log(response)
                 //return the data
                 setEventData(response.data)
@@ -63,79 +67,55 @@ function Events({ isDarkMode }) {
         }
         dataFetch();
     },[]);
+   
+    useEffect(() => {
+        console.log(decode.id)
+        const fetchSettlements = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND}/settlement/from/${decode.id}`);
+                console.log("Settlements:", response.data);
+                setSettlements(response.data);
+                // Process and use the fetched settlements here
+            } catch (error) {
+                console.error("Error fetching settlements:", error.response);
+            }
+        };
+    
+        fetchSettlements();
+        
+    }, []);
 
-    /*
-    let clearedEvents = [];
-    let otherEvents = [];
-    if (eventData.events && eventData.events.length){
-        eventData.events.forEach(event => {
-            const eventBalance = parseFloat(event.balance.replace('$', '')) 
-            if(eventBalance === 0){
-                clearedEvents.push(event);
-            }else{
-                otherEvents.push(event);
+    function calculateAmounts(expenses, currentUserId) {
+        let amountOwed = 0; // Amount the current user owes to others
+        let amountOwedBy = 0; // Amount owed to the current user by others
+    
+        expenses.forEach(expense => {
+            if (expense.settleTo._id !== currentUserId && !expense.status) {
+                // If the current user is not the one who paid and the status is false (unsettled)
+                amountOwed += expense.amount;
+            }
+            if (expense.settleTo._id === currentUserId && !expense.status) {
+                // If the current user is the one who paid and the status is false (unsettled)
+                amountOwedBy += expense.amount;
             }
         });
+    
+        return { amountOwed, amountOwedBy };
     }
 
     useEffect(() => {
-        let filtered = [];
-        if (eventData.events) {
-            switch (selectedFilter) {
-                case 'owe':
-                    filtered = eventData.events.filter(event => parseFloat(event.balance.replace('$', '')) < 0);
-                    break;
-                case 'owed':
-                    filtered = eventData.events.filter(event => parseFloat(event.balance.replace('$', '')) > 0);
-                    break;
-                case 'cleared':
-                    filtered = eventData.events.filter(event => parseFloat(event.balance.replace('$', '')) === 0);
-                    break;
-                case 'all':
-                default:
-                    filtered = eventData.events;
-                    break;
-            }
+        if (settlements.length > 0) {
+            const { amountOwed, amountOwedBy } = calculateAmounts(settlements, decode.id);
+            setAmountOwed(amountOwed);
+            setAmountOwedBy(amountOwedBy);
+            // Now you can use amountOwed and amountOwedBy in your component
+            console.log(`Amount Owed: ${amountOwed}, Amount Owed By: ${amountOwedBy}`);
         }
-        setFilteredEvents(filtered);
-    }, [selectedFilter, eventData.events]);
+    }, [settlements, decode.id]);
 
-    const handleFilterChange = (newFilter) => {
-        setSelectedFilter(newFilter.target.value);
-        setShowFilter(false); // Hide filter options
-    };
-
-    const handleDropdownClick = (event) =>{
-        event.stopPropagation();
-    }
-
-    const totalOwed = eventData && eventData.events && eventData.events.length 
-    ? eventData.events.reduce((acc, event) => {
-        const balance = parseFloat(event.balance.replace('$', ''));
-        return balance < 0 ? acc + balance : acc;
-    }, 0) 
-    : 0;
-
-    const totalOwedToYou = eventData && eventData.events && eventData.events.length 
-    ? eventData.events.reduce((acc, event) => {
-        const balance = parseFloat(event.balance.replace('$', ''));
-        return balance > 0 ? acc + balance : acc;
-    }, 0) 
-    : 0;
-
-    //const totalBalance = eventData && eventData.events && eventData.events.length ? eventData.events.reduce((acc, event) => acc + parseFloat(event.balance.replace('$', '')), 0): 0;
-    
-    let sortedEvents = [];
-    if (eventData.events && eventData.events.length) {
-        sortedEvents = eventData.events.sort((a, b) => new Date(b.date) - new Date(a.date));
-    }
-
-    */
-   
     function EventClick(eventId){
         console.log(`Event ${eventId} was clicked`)
     }
-    
 
     return(
         <div className = "Events">
@@ -144,74 +124,37 @@ function Events({ isDarkMode }) {
                 Add Events
             </button>
 
-{/* total balance Section + Filter Icon
-
             <div className="Total_Balance_Section">
-                <img src={eventData.avatar} alt="User's Avatar" className="Total_Balance_avatar"></img>
+                < img src={eventData.avatar} alt="User's Avatar" className="Total_Balance_avatar"></img>
                 <div>
                     <div className="Total_Balance_title">Total Balance</div>
                     <div className="balance_details">
-                        {totalOwed < 0 && (
-                            <div> You owe ${Math.abs(totalOwed).toFixed(2)}</div>
+                        { (
+                            <div> You owe ${Math.abs(amountOwed).toFixed(2)}</div>
                         )}
-                        {totalOwedToYou > 0 && (
-                            <div> You are owed ${totalOwedToYou.toFixed(2)}</div>
+                        {(
+                            <div> You are owed ${amountOwedBy.toFixed(2)}</div>
                         )}
-                        {totalOwed === 0 && totalOwedToYou === 0 && (
+                        {amountOwed === 0 && amountOwedBy === 0 && (
                             <div> All Balances are Settled!</div>
                         )}
                     </div>
                 </div>
             </div>
 
-            <div className="filter-icon" onClick={() => setShowFilter(!showFilter)}>
-                <img 
-                    src={EventsFilter}
-                    alt="EventsList"
-                    className="EventsFilter"
-                    style={{ width: "25px", height: "25px"}}
-                />
-                 {showFilter && (
-                    <select 
-                        className="filter-menu" 
-                        onChange={handleFilterChange} 
-                        onClick={handleDropdownClick}
-                        value = {selectedFilter}
-                    >
-                        <option value="all">All Events</option>
-                        <option value="cleared">Cleared</option>
-                        <option value="owe">I Owe</option>
-                        <option value="owed">Owed To Me</option>
-                    </select>
-                )} <s></s>
-            </div>
-
-                 */}
-
-{/*
-            <div className="events-list">
-                <ul>
-                    {filteredEvents.map(event =>(
-                        <li key = {event.id} className="event-list">
-                            <div className="Event-date">
-                                {reformatDate(event.date)}
-                            </div>
-                            <div className="Event-name" style={{ marginBottom: '5px' }}>
-                                <span>{event.name}</span>
-                            </div>
-                            <Link to='/event'>
-                            <button onClick={() => EventClick(event.id)}>View Event</button>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <input
+            type="text"
+            placeholder="Search for an event..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="mt-4 search-input"
+            />
             
-            */}
-
             <div className="events-list">
                 <ul>
-                    {eventData.events && eventData.events.length > 0 ? (eventData.events.map(event =>(
+                    {eventData.events && eventData.events.length > 0 ? (eventData.events
+                    .filter(event => event.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                    .map(event => (
                         <li key = {event._id} className="event-list">
                             <div className="Event-date">
                                 {reformatDate(event.date)}

@@ -7,9 +7,13 @@ router.get("/:eventId", async (req, res) => {
     const eventId = req.params.eventId;
     const event = await Event.findById(eventId).populate({
       path: "expenses",
-      model: "Expense"
+      model: "Expense",
+      populate: {
+        path: "splitDetails.settlement",
+        model: "Settlement",
+      },
     });
-    
+
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
     }

@@ -1,160 +1,168 @@
 .friends-page {
-    @apply bg-white font-mono; 
+  @apply bg-white font-mono;
 }
 
 .page-title {
-    @apply text-2xl font-bold mb-5 p-2;
+  @apply text-2xl font-bold mb-5 p-2;
 }
 
 .balance-section {
-    @apply flex space-x-4 items-center p-4 bg-cyan-100 rounded-lg;
+  @apply flex space-x-4 items-center p-4 bg-cyan-100 rounded-lg;
 }
 
 .user-avatar {
-    @apply w-20 h-20 rounded-full border-4 border-cyan-300;
+  @apply w-20 h-20 rounded-full border-4 border-cyan-300;
 }
 
 .avatar {
-    @apply rounded-full w-12 h-12 mr-5; 
+  @apply rounded-full w-12 h-12 mr-5;
 }
 
 .balance-title {
-    @apply font-bold mb-2.5; 
+  @apply font-bold mb-2.5;
 }
 
 .balance-details {
-    @apply flex flex-col; 
+  @apply flex flex-col;
 }
 
 .friends-list {
-    @apply h-96 w-full overflow-auto flex flex-col space-y-4 mt-6 bg-cyan-100 bg-opacity-50; 
+  @apply h-96 w-full overflow-auto flex flex-col space-y-4 mt-6 bg-cyan-100 bg-opacity-50;
 }
 
 .friends-list h3 {
-    @apply mt-5 mb-2.5; 
+  @apply mt-5 mb-2.5;
 }
 
 .friend-item {
-    @apply flex justify-between items-center p-4 border-b border-gray-200; 
+  @apply flex justify-between items-center p-4 border-b border-gray-200;
 }
 
 .item-name-avatar {
-    @apply flex items-center; 
+  @apply flex items-center;
 }
 
 .friend-avatar {
-    @apply rounded-full mr-2.5 w-12 h-12; 
+  @apply rounded-full mr-2.5 w-12 h-12;
 }
 
 .positive-balance {
-    @apply text-green-500; 
+  @apply text-green-500;
 }
 
 .negative-balance {
-    @apply text-red-500; 
+  @apply text-red-500;
 }
 
 .add-friends-btn-div {
-    @apply flex justify-end mt-5;
+  @apply flex justify-end mt-5;
 }
 
 .add-friends-btn {
-    @apply w-24 h-16 rounded-full text-center p-1 bg-cyan-100 border-cyan-500 hover:bg-orange-100 active:bg-orange-200;
+  @apply w-24 h-16 rounded-full text-center p-1 bg-cyan-100 border-cyan-500 hover:bg-orange-100 active:bg-orange-200;
 }
 
 /* Add styling for the pop-up window for add friends*/
 
 .input-content {
-    @apply w-full p-2.5 rounded-full border border-gray-200 text-lg mb-5; 
+  @apply w-full p-2.5 rounded-full border border-gray-200 text-lg mb-5;
 }
 
 .modal {
-    @apply flex justify-center items-center fixed inset-0 z-50; 
+  @apply flex justify-center items-center fixed inset-0 z-50;
 }
 
 .modal-content {
-    @apply bg-cyan-300 rounded-lg w-4/5 p-5 shadow-md; 
+  @apply bg-cyan-300 rounded-lg w-4/5 p-5 shadow-md;
 }
 
 .modal-content h2 {
-    @apply text-lg leading-6 font-medium text-gray-700 mb-4 mt-0; 
+  @apply text-lg leading-6 font-medium text-gray-700 mb-4 mt-0;
 }
 
 .modal-content button {
-    @apply w-full p-3 rounded-full border border-slate-100 bg-cyan-100 mb-4; 
+  @apply w-full p-3 rounded-full border border-slate-100 bg-cyan-100 mb-4;
 }
 
 .add-friend-name {
-    @apply flex-grow text-left px-4; 
+  @apply flex-grow text-left px-4;
 }
 
 .add-friend-item {
-    @apply flex justify-between items-center p-4 border-b border-gray-200 bg-cyan-100; 
+  @apply flex justify-between items-center p-4 border-b border-gray-200 bg-cyan-100;
+}
+
+.checkbox {
+  padding-left: 5px;
 }
 
 .space-to-scroll {
-    height: 60px;
+  height: 60px;
 }
 
 /* Dark Mode for Friends Page */
 .body-dark-mode {
-    @apply bg-gray-800; /* add dark mode to the outter most background on the page (area around the container) */
+  @apply bg-gray-800; /* add dark mode to the outter most background on the page (area around the container) */
 }
 
 .dark-mode .friends-page {
-    @apply bg-gray-800 text-white;
-    min-height: 100vh;
+  @apply bg-gray-800 text-white;
+  min-height: 100vh;
 }
-  
+
 .dark-mode .balance-section {
-    @apply bg-gray-700; 
+  @apply bg-gray-700;
 }
-  
+
 .dark-mode .user-avatar {
-    @apply border-cyan-600; 
+  @apply border-cyan-600;
 }
-  
+
 .dark-mode .friends-list {
-    @apply bg-gray-600 bg-opacity-50; 
+  @apply bg-gray-600 bg-opacity-50;
 }
-  
+
 .dark-mode .friend-item {
-    @apply border-gray-600; 
+  @apply border-gray-600;
 }
-  
+
 .dark-mode .add-friends-btn {
-    @apply bg-gray-500 border-gray-600 hover:bg-gray-600 active:bg-gray-700;
+  @apply bg-gray-500 border-gray-600 hover:bg-gray-600 active:bg-gray-700;
 }
 
 .dark-mode .add-friends-btn-div {
-    @apply mb-4; 
+  @apply mb-4;
 }
 
 .dark-mode .space-to-scroll {
-    @apply bg-gray-700;
-    height: 0px;
+  @apply bg-gray-700;
+  height: 0px;
 }
 
 /* Dark Mode for Add Friends Modal */
 .dark-mode .modal-content {
-    @apply bg-gray-800; 
+  @apply bg-gray-800;
 }
-  
+
 .dark-mode .modal-content h2,
 .dark-mode .add-friend-name,
 .dark-mode .input-content,
 .dark-mode .modal-content button {
-    @apply text-white; 
+  @apply text-white;
 }
-  
+
 .dark-mode .input-content {
-    @apply bg-gray-600 border-gray-500; 
+  @apply bg-gray-600 border-gray-500;
 }
-  
+
 .dark-mode .modal-content button {
-    @apply bg-gray-600 hover:bg-gray-500 active:bg-gray-400; 
+  @apply bg-gray-600 hover:bg-gray-500 active:bg-gray-400;
 }
-  
+
 .dark-mode .add-friend-item {
-    @apply bg-gray-600 border-gray-500; 
+  @apply bg-gray-600 border-gray-500;
+}
+
+.login-button {
+  @apply w-full bg-blue-500 text-white rounded p-2 hover:bg-blue-700 mb-4 mt-6;
 }

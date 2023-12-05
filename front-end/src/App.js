@@ -6,6 +6,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import FriendsPage from "./components/FriendsPage";
+import FriendDetailPage from "./components/FriendDetailPage";
 import Events from "./components/Events";
 import Expense from "./components/Expense";
 import UserInfo from "./components/UserInfo";
@@ -73,7 +74,7 @@ function App() {
             }
           />
           <Route
-            path="/user-info/:userId"
+            path="/user-info"
             element={
               <UserInfo
                 isDarkMode={isDarkMode}
@@ -85,6 +86,15 @@ function App() {
             path="/add-expense/:eventId"
             element={
               <AddExpense
+                isDarkMode={isDarkMode}
+                toggleDarkMode={toggleDarkMode}
+              />
+            }
+          />
+          <Route
+            path="/friend/:friendId"
+            element={
+              <FriendDetailPage
                 isDarkMode={isDarkMode}
                 toggleDarkMode={toggleDarkMode}
               />

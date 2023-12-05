@@ -34,7 +34,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/signup",
+        `${process.env.REACT_APP_BACKEND}/signup`,
         formData,
         {
           headers: {

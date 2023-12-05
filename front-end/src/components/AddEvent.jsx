@@ -88,7 +88,7 @@ function AddEvent({addEvent, onClose}){
     
         try {
             console.log('Submitting data:', submitData);
-            const response = await axios.post(`http://localhost:3001/addEvent`, submitData);
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND}/addEvent`, submitData);
             console.log(`Event added:`, response.data);
             onClose(); // Optionally close the form upon successful submission
         } catch (error) {
@@ -102,10 +102,9 @@ function AddEvent({addEvent, onClose}){
         setSearchPerformed(true);
         console.log('userID in friendsCL:', userID, 'Type:', typeof userID);
         try{
-            //const url = `http://localhost:3001/addEventMember/friendsList/${currentUser.id}`;
 
             // Make the API call
-            const response = await axios.get(`http://localhost:3001/addEventMember/friendsList/${userID}`);
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND}/addEventMember/friendsList/${userID}`);
             //return the data
             console.log(response)
             setfriendsList(Array.isArray(response.data.friends) ? response.data.friends : [response.data.friends]);

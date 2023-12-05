@@ -27,7 +27,7 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/forgot-password",
+        `${process.env.REACT_APP_BACKEND}/forgot-password`,
         formData,
         {
           headers: {
@@ -44,7 +44,7 @@ const ForgotPassword = () => {
         navigate("/", { state: { showAlert: true } });
       }
     } catch (error) {
-      setErrorMessage("something went wrong with forgot password!");
+      setErrorMessage("Invalid email or username, please try again!");
     }
   };
 
@@ -52,7 +52,9 @@ const ForgotPassword = () => {
     return (
       <div className="forgot-password-container">
         <div className="forgot-password-form">
-          <h2 className="forgot-password-title">Forgot Password</h2>
+          <h2 className="forgot-password-title">Reset Password</h2>
+          {errorMessage ? <p className="error">{errorMessage}</p> : ""}
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <label htmlFor="email" className="forgot-password-label">
               Email
@@ -99,7 +101,7 @@ const ForgotPassword = () => {
 
           <div className="mt-4">
             <p>
-              Remember your password?{" "}
+              No need to rest?{" "}
               <a href="/" className="forgot-password-link">
                 Login
               </a>
