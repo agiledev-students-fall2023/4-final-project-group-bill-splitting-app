@@ -52,7 +52,7 @@ const ForgotPassword = () => {
     return (
       <div className="forgot-password-container">
         <div className="forgot-password-form">
-          <h2 className="forgot-password-title">Reset Password</h2>
+          <h2 className="forgot-password-title">Forgot Password</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <label htmlFor="email" className="forgot-password-label">
               Email
@@ -99,7 +99,7 @@ const ForgotPassword = () => {
 
           <div className="mt-4">
             <p>
-              No need to rest?{" "}
+              Remember your password?{" "}
               <a href="/" className="forgot-password-link">
                 Login
               </a>
