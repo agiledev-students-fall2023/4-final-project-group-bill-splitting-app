@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3 
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -26,6 +26,8 @@ jobs:
 
     - name: Install back-end dependencies
       run: |
+        hostname
+        pwd
         cd back-end
         npm install
 
@@ -50,3 +52,4 @@ jobs:
       # console.log
       # pwd: which place 
       # run these steps on where
+      # how to automatically copy code to the server -->
