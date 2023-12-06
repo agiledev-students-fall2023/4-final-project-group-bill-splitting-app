@@ -46,7 +46,9 @@ app.get("/signup", (req, res) => {
   res.send("Sign Up Successful!");
 });
 
-app.use(express.static(path.join(__dirname, 'front-end/build')));
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+export const publicpath = path.join(__dirname, "public");
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/addExpensePayer", addExpensePayerRoute);
 app.use("/add-expense", addExpenseRoute);
