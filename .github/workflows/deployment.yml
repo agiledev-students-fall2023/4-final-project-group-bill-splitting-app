@@ -1,8 +1,10 @@
 name: Deploy to DigitalOcean Droplet
-'on':
+
+on:
   push:
-    branches:
-      - master, workflows-action
+    branches: [ 'master', 'workflows-action' ]
+  pull_request:
+    branches: [ 'master', 'workflows-action' ]
 
 jobs:
   deploy:
