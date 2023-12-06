@@ -41,6 +41,11 @@ jobs:
       run: |
         cd front-end
         npm install
+    
+    - name: Create build folder in front-end
+      run: |
+        cd front-end
+        npm run build
 
     - name: Start front-end
       run: |
@@ -48,8 +53,7 @@ jobs:
         npm start &
         sleep 10 # Waits 10 seconds to ensure front-end is up
     
-    - name: Create build folder in front-end
-      run: npm run build
+    
     
 
 
