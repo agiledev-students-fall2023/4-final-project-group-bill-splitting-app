@@ -48,21 +48,17 @@ jobs:
         npm start &
         sleep 10 # Waits 10 seconds to ensure front-end is up
 
-    - name: Run pm2
-      run: |
-        cd ..
-        pm2 stop 0
-        pm2 start 0
-        pm2 save
-        sudo service nginx restart
-        
-    - name: Check PM2 status
-      run: pm2 status
-    
-    
-    
+    # - name: Run pm2
+    #   run: |
+    #     cd ..
+    #     pm2 stop 0
+    #     pm2 start 0
+    #     pm2 save
+    #     sudo service nginx restart
 
-
+    # - name: Check PM2 status
+    #   run: pm2 status
+    
 
       # console.log
       # pwd: which place 
