@@ -1,0 +1,120 @@
+/* Expense.css - styling of Expense Page */
+
+.expense-page {
+    @apply bg-white min-h-screen p-6 font-mono; 
+}
+
+.page-title {
+    @apply text-2xl font-bold mb-5 p-2;
+}
+
+.buttons {
+    @apply flex justify-center my-4; 
+}
+
+.buttons > button {
+    @apply py-2 px-4 rounded-full font-bold mr-2;
+    @apply w-32 h-10 rounded-lg bg-cyan-100 hover:bg-orange-100 active:bg-orange-200;
+    display: inline-block;  
+    transition: background-color 0.2s;
+}
+
+.positive{
+    @apply text-green-500
+}
+
+.negative{
+    @apply text-red-500
+}
+
+.expense-container {
+    @apply w-full flex flex-col space-y-4 mt-6;
+    @apply bg-cyan-100 rounded-2xl p-8;
+}
+
+.expense-list {
+    @apply flex flex-col space-y-4 overflow-auto h-96;
+}
+
+.expense-section {
+    @apply w-full flex flex-col space-y-4 mt-6;
+}
+
+.expense-title {
+    @apply font-bold mb-2.5;
+}
+
+.expense-details {
+    @apply flex flex-col;
+}
+
+.expenses-list h3 {
+    @apply w-full flex flex-col space-y-4 mt-6;
+}
+
+.expense-item {
+    @apply flex justify-between items-center p-4 border-b border-gray-200;
+}
+
+.expense-item span:first-child {
+    @apply flex-1 text-left;
+}
+
+.expense-item span:nth-child(2) {
+    @apply shrink-0 mr-8; /* add margin to the right of the expense amount */
+}
+
+.expense-item .checkbox {
+    @apply shrink-0;
+}
+
+/* Dark Mode for Expense Page */
+.body-dark-mode {
+    @apply bg-gray-800; /* add dark mode to the outter most background on the page (area around the container) */
+  }
+  
+.dark-mode .expense {
+    @apply bg-gray-800 text-white;
+    min-height: 100vh;
+}
+
+.dark-mode .page-title,
+.dark-mode .expense-title {
+    @apply text-white;
+}
+
+.dark-mode .buttons > button {
+    @apply bg-gray-600 text-white hover:bg-gray-600 active:bg-gray-500; 
+}
+
+.dark-mode .expense-container,
+.dark-mode .expense-section {
+    @apply bg-gray-700; 
+}
+
+.dark-mode .expense-list,
+.dark-mode .expenses-list h3 {
+    @apply bg-gray-700; 
+}
+
+.dark-mode .expense-item {
+    @apply bg-gray-700 border-gray-600; 
+}
+
+.dark-mode .expense .expense-item .positive {
+    color: green;
+}
+
+.dark-mode .expense .expense-item .negative {
+    color: red;
+}
+
+.dark-mode .expense-item span:first-child,
+.dark-mode .expense-item span:nth-child(2),
+.dark-mode .expense-details {
+    @apply text-white; 
+}
+
+.dark-mode .expense-item .checkbox {
+    @apply border-white;
+}

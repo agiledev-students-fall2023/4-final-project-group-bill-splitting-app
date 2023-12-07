@@ -1,0 +1,125 @@
+.split-modal {
+    @apply flex justify-center items-center fixed inset-0 z-50; 
+}
+
+.split-modal-content {
+    @apply bg-cyan-300 rounded-lg w-4/5 p-5 shadow-md; 
+}
+
+.split-modal-content button {
+    @apply w-full p-3 rounded-full border border-slate-100 bg-cyan-100 mb-4; 
+}
+
+.tab {
+    @apply grid grid-cols-3 gap-x-2;
+}
+
+.tab .active {
+    @apply bg-cyan-300;
+}
+
+.tab-content {
+    @apply mb-4 p-2 rounded-lg bg-cyan-100 bg-opacity-50;
+}
+
+.amountPerPerson {
+    @apply grid grid-cols-2 gap-4 p-1 mb-4 items-center;
+}
+
+.amountPerPerson span:first-child {
+    @apply text-left;
+}
+  
+.amountPerPerson span:last-child {
+    @apply text-right;
+}
+
+.amountPerPerson .participant-name {
+    @apply text-left;
+}
+
+.amountPerPerson .calculated-amount {
+    @apply text-right;
+}
+
+.amountPerPerson .dollar-sign {
+    @apply mr-2;
+}
+
+.amountPerPerson input {
+    @apply w-full text-right;
+}
+
+.amountPerPerson .percentageContent {
+    @apply flex justify-end items-center w-full;
+}
+
+.amountPerPerson .amountInputContainer {
+    @apply flex items-center;
+}
+
+.amountPerPerson .percentageContent input {
+    @apply text-right mr-2;
+}
+
+.amountPerPerson .percentageContent span {
+    @apply whitespace-nowrap;
+}
+
+.percentage-sign {
+    margin-right: 3px;
+}
+
+.equals-sign {
+    padding-right: 4px; 
+}
+
+.participant-percentage-input {
+    margin-right: -4px;
+}
+
+/* Dark Mode for Split Modal */
+.dark-mode .split-modal-content {
+    @apply bg-gray-900; 
+}
+
+.dark-mode .split-modal-content button {
+    @apply bg-gray-700 border-gray-600 text-white; 
+}
+
+.dark-mode .split-modal-content button:hover {
+    @apply bg-gray-600; 
+}
+
+.dark-mode .split-modal-content button:active {
+    @apply bg-gray-500; 
+}
+
+.dark-mode .tab {
+    @apply bg-gray-800; 
+}
+
+.dark-mode .tab .active {
+    @apply bg-gray-700; 
+}
+
+.dark-mode .tab-content {
+    @apply bg-gray-700; 
+}
+
+.dark-mode .amountPerPerson {
+    @apply bg-gray-700; 
+}
+
+.dark-mode .amountPerPerson input {
+    @apply text-white bg-gray-600; 
+}
+
+.dark-mode .amountPerPerson .percentageContent {
+    @apply text-white; 
+}
+
+.validation-message {
+    color: red;
+    text-align: center;
+}

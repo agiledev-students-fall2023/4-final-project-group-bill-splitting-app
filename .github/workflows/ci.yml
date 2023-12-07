@@ -1,0 +1,32 @@
+name: CI for Front-end and Back-end
+
+on: [push]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.x"
+
+      - name: Build front-end
+        run: |
+          cd front-end
+          npm install
+          npm run build
+
+      - name: Install dependencies
+        run: |
+          cd back-end
+          npm ci
+
+      - name: Run back-end tests
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: |
+          cd back-end
+          npm test -- --exit

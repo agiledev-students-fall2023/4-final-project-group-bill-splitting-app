@@ -1,0 +1,127 @@
+header {
+  @apply text-2xl font-bold;
+}
+
+.description {
+  @apply h-20 w-full text-center p-4 mt-3 mb-6 rounded-lg;
+}
+
+.summary {
+  @apply flex space-x-4 place-content-center mb-6;
+}
+
+.expenses {
+  @apply overflow-auto mb-4 p-2 rounded-lg bg-cyan-100 bg-opacity-50;
+}
+
+.expenses {
+  height: 50vh;
+}
+
+.expenseItem {
+  @apply grid grid-cols-6 w-full p-1 mb-4 rounded-lg;
+}
+
+.name {
+  @apply col-span-3 hover:text-orange-200;
+}
+
+.date,
+.name,
+.amount {
+  @apply inline-block m-auto mr-4;
+}
+
+.negative {
+  color: red;
+}
+
+.positive {
+  color: green;
+}
+
+.settled {
+  @apply text-green-500;
+}
+
+.name {
+  @apply ml-2;
+}
+
+.amount,
+.checkbox {
+  @apply mr-0;
+}
+
+.date {
+  @apply w-12 p-1 rounded-2xl bg-slate-100 break-words text-center opacity-60;
+}
+
+.addExpenseBtnDiv {
+  @apply flex justify-end;
+}
+
+.addExpenseBtn {
+  @apply w-24 h-16 rounded-full text-center p-1 bg-cyan-100 border-cyan-500 hover:bg-orange-100 active:bg-orange-200;
+}
+
+.space-to-scroll {
+  height: 60px;
+}
+
+/* Dark Mode for Each Event Page */
+.body-dark-mode {
+  @apply bg-gray-800; /* add dark mode to the outter most background on the page (area around the container) */
+}
+
+.dark-mode .event-page-container {
+  @apply bg-gray-800; /* the area within the outter most background */
+}
+
+.dark-mode .event-page {
+  @apply bg-gray-800;
+  min-height: 100vh;
+}
+
+.dark-mode .expenses {
+  @apply bg-gray-700;
+}
+
+.dark-mode .description {
+  @apply bg-gray-800;
+}
+.dark-mode .date {
+  @apply bg-gray-800;
+}
+
+.dark-mode .operations button,
+.dark-mode .addExpenseBtn {
+  @apply bg-gray-600 hover:bg-gray-500 active:bg-gray-400;
+}
+
+.dark-mode .date {
+  @apply bg-gray-600;
+}
+
+.dark-mode .name:hover,
+.dark-mode .name,
+.dark-mode .amount {
+  @apply text-white;
+}
+
+.dark-mode .space-to-scroll {
+  @apply bg-gray-700;
+  height: 0px;
+}
+
+.dark-mode .negative {
+  color: red;
+}
+
+.dark-mode .positive {
+  color: green;
+}
+
+.dark-mode .settled {
+  @apply text-green-500;
+}

@@ -1,0 +1,107 @@
+#addExpense form {
+  @apply flex flex-col space-y-3 mt-5 bg-cyan-50 rounded-2xl p-8;
+}
+
+#addExpense form div {
+  @apply ml-6;
+}
+
+#addExpense form .submitBtn {
+  @apply m-auto;
+}
+
+.submitBtn button {
+  @apply w-24 h-8 rounded-full bg-cyan-100 hover:bg-orange-100 active:bg-orange-200 mt-10;
+}
+
+.splitMethods button {
+  @apply w-60 h-8 rounded-sm shadow-lg active:bg-cyan-100;
+}
+
+#selected-container {
+  height: 100px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+#available-container {
+  @apply overflow-auto;
+  height: 65px;
+  width: 150px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.remove-button {
+  margin-left: auto;
+  padding: 5px 5px;
+  background-color: #f44336; /* Red color for remove button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #d32f2f;
+}
+
+.space-to-scrolls {
+    height: 60px;
+}
+
+/* Dark Mode for Add Expense Modal */
+.body-dark-mode {
+  @apply bg-gray-800; /* add dark mode to the outter most background on the page (area around the container) */
+}
+
+.dark-mode .add-expense-page-container {
+  @apply bg-gray-800; /* the area within the outter most background, where  "Event | Add New Expense" located */
+}
+
+.dark-mode #addExpense form {
+  @apply bg-gray-700;
+}
+
+.dark-mode #addExpense form input,
+.dark-mode #addExpense form select,
+.dark-mode #addExpense form button {
+  @apply bg-gray-900 text-white border-gray-700;
+}
+
+.dark-mode #addExpense form .submitBtn button,
+.dark-mode .splitMethods button {
+  @apply bg-gray-700 hover:bg-gray-600 active:bg-gray-500;
+}
+
+.dark-mode #selected-container,
+.dark-mode #available-container {
+  @apply bg-gray-900;
+}
+
+.dark-mode .remove-button {
+  @apply bg-red-700 hover:bg-red-600;
+}
+
+.dark-mode #addExpense form label,
+.dark-mode #addExpense form .remove-button {
+  @apply text-gray-300;
+}
+
+.dark-mode .splitMethods button {
+  @apply text-gray-300;
+}
+
+.dark-mode .remove-button:hover {
+  @apply bg-red-600;
+}
+
+.dark-mode .space-to-scrolls {
+    @apply bg-gray-700; 
+    height: 60px;
+    
+}

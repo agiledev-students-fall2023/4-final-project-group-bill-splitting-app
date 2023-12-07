@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "express-validator": "^7.0.1",
+    "jwt-decode": "^4.0.0",
+    "mongoose": "^8.0.1",
+    "react-router-dom": "^6.17.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0"
+  }
+}

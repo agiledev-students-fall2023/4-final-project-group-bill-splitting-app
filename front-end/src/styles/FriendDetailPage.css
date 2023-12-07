@@ -1,0 +1,59 @@
+header {
+  @apply text-2xl font-bold;
+}
+
+.user-avatar {
+  @apply w-20 h-20 rounded-full border-4 border-cyan-300;
+}
+
+.balance {
+  @apply flex space-x-4 items-center p-4 rounded-lg;
+}
+
+.settlements-section {
+  @apply h-64 w-full overflow-auto flex flex-col space-y-4 mt-6 bg-cyan-100 bg-opacity-50;
+}
+
+.settlements-section h3 {
+  @apply text-lg font-bold;
+}
+
+.settlements-section .settlement-label {
+  @apply text-base font-bold;
+}
+
+.settlements-section .settlement-item {
+  @apply flex justify-between items-center p-4 border-b border-gray-200;
+}
+
+.settle-all-section {
+  text-align: right;
+  padding-right: 20px;
+}
+
+#settle-all-btn {
+  @apply bg-cyan-100 font-bold py-2 px-4 rounded shadow-md;
+  @apply focus:outline-none;
+  @apply transition-colors duration-300 ease-in-out;
+}
+
+/* Dark Mode for Friend Detail Page */
+.dark-mode #friend-detail-page {
+  @apply bg-gray-800 text-white; /* add dark mode to the outter most background on the page (area around the container) */
+}
+
+.dark-mode .balance {
+  @apply bg-gray-800;
+}
+
+.dark-mode .user-avatar {
+  @apply border-cyan-600;
+}
+
+.dark-mode .settlements-section {
+  @apply bg-gray-700 mb-4;
+}
+
+.dark-mode #settle-all-btn {
+  @apply bg-gray-700 mb-4;
+}

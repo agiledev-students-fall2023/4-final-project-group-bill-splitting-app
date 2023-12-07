@@ -1,0 +1,35 @@
+.signup-container {
+  @apply min-h-screen flex flex-col items-center justify-center bg-gray-100;
+}
+
+.signup-form {
+  @apply bg-white p-8 rounded-lg shadow-md text-center max-w-md w-full;
+}
+
+.signup-title {
+  @apply text-2xl font-bold mb-4;
+}
+
+.signup-label {
+  @apply block text-left font-semibold mb-2;
+}
+
+.signup-input {
+  @apply w-full px-4 py-2 border rounded mb-4;
+}
+
+.signup-button {
+  @apply w-full bg-blue-500 text-white rounded p-2 hover:bg-blue-700 mb-4;
+}
+
+.signup-link {
+  @apply text-blue-500 hover:underline;
+}
+
+.user-image-container {
+  @apply flex items-center justify-center;
+}
+
+.user-image {
+  @apply ml-2;
+}

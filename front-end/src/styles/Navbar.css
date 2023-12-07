@@ -1,0 +1,54 @@
+.navbar {
+  @apply pb-4 fixed bottom-0 left-0 right-0 bg-white;
+}
+
+.navbar ul {
+  @apply list-none flex justify-around p-0 border-b-2 shadow-md pt-4;
+}
+
+.navbar li {
+  @apply m-0;
+}
+
+.app-container {
+  @apply min-h-screen flex flex-col;
+  padding-bottom: 4rem;
+}
+
+.active {
+  @apply text-blue-500 px-4 py-2 font-extrabold text-xs;
+}
+
+.normal {
+  @apply text-black no-underline px-4 py-2 font-extrabold text-xs;
+}
+
+.user-image {
+  @apply flex items-center flex-col mb-2 mt-3;
+}
+
+.user-image-home {
+  @apply flex items-center flex-col pb-2;
+}
+
+.user-image-user {
+  @apply flex items-center flex-col pb-2;
+}
+
+/* Apply dark mode styles to the navbar */
+.dark-mode .navbar {
+  @apply bg-gray-700; /* 400~900, the smaller the lighter */
+}
+
+/* Change the color for icons and text in the Navbar in dark mode */
+.dark-mode .navbar ul {
+  @apply text-white;
+}
+
+.dark-mode .navbar .active {
+  @apply text-blue-300; /* Lighter blue for active links, if you want to keep the blue color consistent */
+}
+
+.dark-mode .navbar .normal {
+  @apply text-gray-300; /* Lighter text for normal links */
+}
